@@ -14,16 +14,16 @@ public class Main {
         Session session = null;
         ChannelSftp channelSftp = null;
         try{
-            session = jsch.getSession("xx", "xx");
-            session.setPassword("xx");
+            session = jsch.getSession("#username", "#host");
+            session.setPassword("#password");
             session.setConfig("StrictHostKeyChecking", "no");
             session.connect();
             com.jcraft.jsch.Channel channel = session.openChannel("sftp");
             channel.connect();
             channelSftp = (ChannelSftp) channel;
             try{
-                channelSftp.put("xx","xx");
-                System.out.println(channelSftp.ls("xx"));
+                channelSftp.put("#sourcePath","#destinationPath");
+                System.out.println(channelSftp.ls("#path"));
             }finally {
                 channelSftp.disconnect();
             }
